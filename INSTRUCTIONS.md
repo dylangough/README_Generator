@@ -106,4 +106,3 @@ You are required to submit the following:
 * A sample README.md file for a project repository generated using your application.
 
 * The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
-
