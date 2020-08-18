@@ -44,7 +44,6 @@ inquirer.prompt([
     },
 ])
 
-promptUser()
     .then(function (response) {
         console.log(response);
         if (response.license === "Mozilla") {
