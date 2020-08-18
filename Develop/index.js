@@ -1,4 +1,4 @@
-const inquirer = require ('inquirer');
+const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
 const makeReadme = require("./generateMarkdown");
@@ -43,10 +43,28 @@ inquirer.prompt([
     },
 ])
 
-fs.writeFile("autoREADME.md", generateMarkdown(response), function(error){
-    if (error) {
-        console.log(error);
-        return;
-    }
-    console.log("PERFECT!!")
-})
+promptUser()
+    .then(function (response) {
+        console.log(response);
+        if (response.license === "Mozilla") {
+            response.badge = "[![License MPL 2.0] (https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)"
+        }
+        if (response.license === "IBM") {
+            response.badge = "[![License IPL 1.0] (https://img.shields.io/badge/License-IPL%201.0-blue.svg)](https://opensource.org/licenses/IPL-1.0)"
+        }
+        if (response.license === "M.I.T.") {
+            response.badge = "[![License M.I.T.] (https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)"
+        }
+        if (response.license === "Nothing") {
+            response.badge = { name: "No license" }
+        }
+
+        fs.writeFile("autoREADME.md", generateMarkdown(response), function (error) {
+            if (error) {
+                console.log(error);
+                return;
+            }
+            console.log("PERFECT!!")
+        })
+
+    })
