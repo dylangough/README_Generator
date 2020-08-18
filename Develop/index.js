@@ -2,6 +2,7 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
 const makeReadme = require("./generateMarkdown");
+const writeFileAsync = util.promisify(fs.writeFile);
 
 
 inquirer.prompt([
